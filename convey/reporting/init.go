@@ -6,6 +6,10 @@ import (
 	"strings"
 )
 
+type t interface {
+	Logf(format string, args ...interface{})
+}
+
 func init() {
 	if !isColorableTerminal() {
 		monochrome()
@@ -30,8 +34,8 @@ func BuildDotReporter() Reporter {
 		NewProblemReporter(out),
 		consoleStatistics)
 }
-func BuildStoryReporter() Reporter {
-	out := NewPrinter(NewConsole())
+func BuildStoryReporter(test t) Reporter {
+	out := NewPrinter(NewTestConsole(test))
 	return NewReporters(
 		NewGoTestReporter(),
 		NewStoryReporter(out),

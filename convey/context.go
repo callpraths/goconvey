@@ -93,7 +93,7 @@ func rootConvey(items ...interface{}) {
 
 	expectChildRun := true
 	ctx := &context{
-		reporter: buildReporter(),
+		reporter: buildReporter(entry.Test),
 
 		children: make(map[string]*context),
 

@@ -98,6 +98,7 @@ func parseSpecifier(items []interface{}) (actionSpecifier, []interface{}) {
 // having to import the "testing" package.
 type t interface {
 	Fail()
+	Logf(format string, args ...interface{})
 }
 
 const parseError = "You must provide a name (string), then a *testing.T (if in outermost scope), an optional FailureMode, and then an action (func())."
